@@ -6,6 +6,8 @@ app.use(cors());
 
 app.use(express.urlencoded({ extended: false }));
 
+app.use('/uploads', express.static('./uploads'))
+
 const expressJWT = require('express-jwt');
 const config = require('./config');
 // 配置注册解析JWT的中间件
@@ -33,6 +35,13 @@ app.use('/api', userRouter);
 
 const userinfoRouter = require('./router/userinfo');
 app.use('/my', userinfoRouter);
+
+const artCateRouter = require('./router/artcate');
+app.use('/my/article', artCateRouter);
+
+const articleRouter = require('./router/article');
+app.use('/my/article', articleRouter);
+
 
 
 // router后 定义error级别middleware
